@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10213b">
+    <title>SafeSpeak X | Track Case</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=999">
+
+    <style>
+        /* Track page light theme override */
+        :root {
+            color-scheme: light;
+            --track-navy: #10213b;
+            --track-gold: #d4a64a;
+            --track-bg: #f5f7fb;
+            --track-text: #10213b;
+            --track-muted: #5f6b7a;
+            --track-border: #e4e8ef;
+            --track-shadow: 0 18px 45px rgba(16, 33, 59, 0.12);
+        }
+
+        body {
+            background: var(--track-bg) !important;
+            color: var(--track-text) !important;
+        }
+
+        body::before,
+        .bg-shape {
+            display: none !important;
+        }
+
+        .page-shell {
+            width: min(1320px, calc(100vw - 22px)) !important;
+            margin: 0 auto !important;
+            padding: 0 0 46px !important;
+        }
+
+        .topbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 50 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 20px !important;
+            background: var(--track-navy) !important;
+            border: 0 !important;
+            border-radius: 0 0 18px 18px !important;
+            padding: 24px 34px !important;
+            margin: 0 0 32px !important;
+            box-shadow: 0 10px 28px rgba(16, 33, 59, 0.18) !important;
+            backdrop-filter: none !important;
+        }
+
+        .brand-block {
+            display: flex !important;
+            align-items: center !important;
+            gap: 14px !important;
+        }
+
+        .brand-mark {
+            width: 48px !important;
+            height: 48px !important;
+            border-radius: 12px !important;
+            display: grid !important;
+            place-items: center !important;
+            background: linear-gradient(145deg, var(--track-gold), #f0d27a) !important;
+            color: var(--track-navy) !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.08em !important;
+            box-shadow: none !important;
+        }
+
+        .brand-title,
+        .brand-subtitle {
+            margin: 0 !important;
+        }
+
+        .brand-title {
+            color: #ffffff !important;
+            font-family: Georgia, serif !important;
+            font-size: 2rem !important;
+            line-height: 1 !important;
+            font-weight: 900 !important;
+        }
+
+        .brand-subtitle {
+            margin-top: 7px !important;
+            color: #dce3ed !important;
+            font-size: 0.9rem !important;
+        }
+
+        .topnav {
+            display: flex !important;
+            gap: 12px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .nav-link {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 42px !important;
+            padding: 11px 16px !important;
+            border-radius: 8px !important;
+            background: rgba(255,255,255,0.08) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255,255,255,0.22) !important;
+            text-decoration: none !important;
+            font-weight: 800 !important;
+            font-size: 0.93rem !important;
+        }
+
+        .nav-link:hover {
+            color: var(--track-gold) !important;
+            border-color: var(--track-gold) !important;
+            background: rgba(255,255,255,0.12) !important;
+        }
+
+        .hero-copy {
+            margin: 0 0 28px !important;
+            padding: clamp(30px, 4vw, 54px) !important;
+            border-radius: 18px !important;
+            border: 1px solid var(--track-border) !important;
+            border-left: 8px solid var(--track-gold) !important;
+            background: #ffffff !important;
+            color: var(--track-text) !important;
+            box-shadow: var(--track-shadow) !important;
+            backdrop-filter: none !important;
+        }
+
+        .hero-copy h1 {
+            margin: 0 0 18px !important;
+            color: var(--track-navy) !important;
+            font-family: "Manrope", "Segoe UI", Arial, sans-serif !important;
+            font-size: clamp(2.4rem, 4vw, 4rem) !important;
+            line-height: 1.08 !important;
+            font-weight: 900 !important;
+        }
+
+        .hero-copy p {
+            max-width: 78ch !important;
+            margin: 0 !important;
+            color: var(--track-muted) !important;
+            line-height: 1.72 !important;
+            font-size: 1.02rem !important;
+        }
+
+        .track-layout {
+            display: grid !important;
+            grid-template-columns: minmax(300px, 0.95fr) minmax(320px, 1.2fr) !important;
+            gap: 24px !important;
+            align-items: start !important;
+            padding: 0 !important;
+        }
+
+        .panel,
+        .panel-form,
+        .panel-result {
+            background: #ffffff !important;
+            color: var(--track-text) !important;
+            border: 1px solid var(--track-border) !important;
+            border-radius: 18px !important;
+            box-shadow: var(--track-shadow) !important;
+            backdrop-filter: none !important;
+        }
+
+        .panel-form,
+        .panel-result {
+            padding: 28px !important;
+        }
+
+        .panel-form h2,
+        .panel-result h2,
+        .result-section h3,
+        .security-note h3 {
+            color: var(--track-navy) !important;
+            margin: 0 !important;
+            font-family: "Manrope", "Segoe UI", Arial, sans-serif !important;
+            font-weight: 900 !important;
+        }
+
+        .panel-copy,
+        .security-note li,
+        .summary-text,
+        .item-value,
+        .empty-item,
+        .notice-neutral {
+            color: var(--track-muted) !important;
+        }
+
+        .form-group {
+            margin-bottom: 18px !important;
+        }
+
+        .field-label {
+            display: block !important;
+            margin-bottom: 8px !important;
+            padding: 0 !important;
+            border: 0 !important;
+            background: transparent !important;
+            color: var(--track-navy) !important;
+            font-size: 0.92rem !important;
+            font-weight: 900 !important;
+            letter-spacing: 0 !important;
+            text-transform: none !important;
+        }
+
+        .text-input {
+            width: 100% !important;
+            min-height: 56px !important;
+            border-radius: 10px !important;
+            border: 1px solid var(--track-border) !important;
+            padding: 12px 14px !important;
+            font-size: 1rem !important;
+            color: var(--track-text) !important;
+            background: #ffffff !important;
+            box-shadow: none !important;
+        }
+
+        .text-input::placeholder {
+            color: #7b8794 !important;
+        }
+
+        .text-input:focus {
+            outline: none !important;
+            border-color: var(--track-gold) !important;
+            box-shadow: 0 0 0 4px rgba(212, 166, 74, 0.16) !important;
+        }
+
+        .passphrase-wrap {
+            display: grid !important;
+            grid-template-columns: 1fr auto !important;
+            gap: 10px !important;
+            align-items: center !important;
+        }
+
+        .icon-btn,
+        .primary-btn,
+        .secondary-btn {
+            min-height: 52px !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            font-family: inherit !important;
+            font-weight: 900 !important;
+        }
+
+        .primary-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            padding: 0 22px !important;
+            background: var(--track-navy) !important;
+            border: 1px solid var(--track-navy) !important;
+            color: #ffffff !important;
+            box-shadow: none !important;
+        }
+
+        .secondary-btn,
+        .icon-btn {
+            padding: 0 18px !important;
+            background: #ffffff !important;
+            color: var(--track-navy) !important;
+            border: 1px solid var(--track-border) !important;
+        }
+
+        .form-actions {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+            margin-top: 4px !important;
+        }
+
+        .notice {
+            margin: 14px 0 0 !important;
+            min-height: 24px !important;
+            font-size: 0.9rem !important;
+            font-weight: 700 !important;
+        }
+
+        .notice-loading {
+            color: #b98a2f !important;
+        }
+
+        .notice-success {
+            color: #16805f !important;
+        }
+
+        .notice-error {
+            color: #b85b45 !important;
+        }
+
+        .security-note,
+        .metric-card,
+        .timeline-item,
+        .attachment-item,
+        .message-item,
+        .empty-item {
+            background: #f8fafc !important;
+            border: 1px solid var(--track-border) !important;
+            color: var(--track-text) !important;
+            border-radius: 14px !important;
+        }
+
+        .security-note {
+            margin-top: 20px !important;
+            padding: 16px !important;
+        }
+
+        .security-note ul {
+            margin: 10px 0 0 !important;
+            padding-left: 18px !important;
+            display: grid !important;
+            gap: 8px !important;
+            line-height: 1.58 !important;
+            font-size: 0.92rem !important;
+        }
+
+        .result-head {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 12px !important;
+            margin-bottom: 16px !important;
+        }
+
+        .status-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            padding: 8px 12px !important;
+            border-radius: 999px !important;
+            border: 1px solid var(--track-border) !important;
+            font-size: 0.76rem !important;
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+        }
+
+        .status-neutral {
+            color: var(--track-muted) !important;
+            background: #f8fafc !important;
+        }
+
+        .status-active {
+            color: #16805f !important;
+            border-color: rgba(22,128,95,0.25) !important;
+            background: rgba(22,128,95,0.08) !important;
+        }
+
+        .status-resolved {
+            color: #b85b45 !important;
+            border-color: rgba(184,91,69,0.25) !important;
+            background: rgba(184,91,69,0.08) !important;
+        }
+
+        .metric-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 10px !important;
+            margin-bottom: 14px !important;
+        }
+
+        .metric-card {
+            padding: 14px !important;
+        }
+
+        .metric-label,
+        .metric-value {
+            margin: 0 !important;
+        }
+
+        .metric-label {
+            font-size: 0.74rem !important;
+            text-transform: uppercase !important;
+            color: #7b8794 !important;
+            font-weight: 900 !important;
+        }
+
+        .metric-value {
+            margin-top: 6px !important;
+            font-size: 1rem !important;
+            font-weight: 900 !important;
+            color: var(--track-navy) !important;
+            word-break: break-word !important;
+        }
+
+        .result-section {
+            margin-top: 16px !important;
+        }
+
+        .result-list {
+            margin: 10px 0 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            display: grid !important;
+            gap: 8px !important;
+        }
+
+        .timeline-item,
+        .attachment-item {
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: space-between !important;
+            gap: 12px !important;
+        }
+
+        .item-label {
+            font-weight: 900 !important;
+            font-size: 0.9rem !important;
+            color: var(--track-navy) !important;
+        }
+
+        .message-meta,
+        .message-body {
+            margin: 0 !important;
+        }
+
+        .message-meta {
+            font-size: 0.74rem !important;
+            color: #7b8794 !important;
+            text-transform: uppercase !important;
+            font-weight: 900 !important;
+        }
+
+        .message-body {
+            margin-top: 6px !important;
+            line-height: 1.65 !important;
+            color: var(--track-text) !important;
+        }
+
+        @media (max-width: 980px) {
+            .track-layout {
+                grid-template-columns: 1fr !important;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page-shell {
+                width: min(100vw - 18px, 1320px) !important;
+            }
+
+            .topbar {
+                display: grid !important;
+                align-items: flex-start !important;
+                gap: 14px !important;
+                padding: 18px !important;
+            }
+
+            .topnav {
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
+
+            .passphrase-wrap {
+                grid-template-columns: 1fr !important;
+            }
+
+            .icon-btn {
+                width: 100% !important;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="bg-shape shape-a" aria-hidden="true"></div>
+    <div class="bg-shape shape-b" aria-hidden="true"></div>
+    <div class="bg-shape shape-c" aria-hidden="true"></div>
+
+    <main class="page-shell">
+        <header class="topbar">
+            <div class="brand-block">
+                <div class="brand-mark">SX</div>
+                <div>
+                    <p class="brand-title">SafeSpeak X</p>
+                    <p class="brand-subtitle">Private case tracking portal</p>
+                </div>
+            </div>
+            <nav class="topnav" aria-label="Quick links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/submit" class="nav-link">Submit</a>
+            </nav>
+        </header>
+
+        <section class="hero-copy">
+            <h1>Track Your Case Securely</h1>
+            <p>
+                Enter your case code and private passphrase to see the latest status, timeline updates,
+                secure team messages, and submitted evidence metadata.
+            </p>
+        </section>
+
+        <section class="track-layout" aria-label="Case tracking workspace">
+            <article class="panel panel-form">
+                <h2>Case Credentials</h2>
+                <p class="panel-copy">Your credentials never leave this session except for secure verification.</p>
+
+                <form id="trackForm" novalidate>
+                    <div class="form-group">
+                        <label class="field-label" for="caseCode">Case code</label>
+                        <input
+                            id="caseCode"
+                            class="text-input"
+                            type="text"
+                            name="case_code"
+                            placeholder="SS-2026-1234"
+                            spellcheck="false"
+                            autocomplete="off"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label" for="passphrase">Passphrase</label>
+                        <div class="passphrase-wrap">
+                            <input
+                                id="passphrase"
+                                class="text-input"
+                                type="password"
+                                name="passphrase"
+                                autocomplete="current-password"
+                                required
+                            >
+                            <button id="togglePassphrase" class="icon-btn" type="button" aria-label="Show or hide passphrase">Show</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="checkStatusButton" class="primary-btn" type="submit">
+                            <span class="btn-label">Check Status</span>
+                            <span class="btn-spinner" aria-hidden="true"></span>
+                        </button>
+                        <button id="clearFormButton" class="secondary-btn" type="button">Clear</button>
+                    </div>
+                </form>
+
+                <p id="trackNotice" class="notice notice-neutral" role="status" aria-live="polite">
+                    Enter your credentials to load live case updates.
+                </p>
+
+                <div class="security-note" aria-label="Security tips">
+                    <h3>Privacy tips</h3>
+                    <ul>
+                        <li>Use a private device when checking your case.</li>
+                        <li>Never share your passphrase in public channels.</li>
+                        <li>Use the Clear button before leaving shared computers.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="resultPanel" class="panel panel-result hidden" aria-live="polite">
+                <div class="result-head">
+                    <h2>Live Case Overview</h2>
+                    <span id="resultStatusBadge" class="status-badge status-neutral">No status yet</span>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <p class="metric-label">Case code</p>
+                        <p id="resultCaseCode" class="metric-value">-</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-label">Risk level</p>
+                        <p id="resultRisk" class="metric-value">-</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-label">Category</p>
+                        <p id="resultCategory" class="metric-value">-</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-label">Last update</p>
+                        <p id="resultUpdated" class="metric-value">-</p>
+                    </div>
+                </div>
+
+                <section class="result-section">
+                    <h3>Summary</h3>
+                    <p id="resultSummary" class="summary-text">-</p>
+                </section>
+
+                <section class="result-section">
+                    <h3>Timeline</h3>
+                    <ul id="resultTimeline" class="result-list"></ul>
+                </section>
+
+                <section class="result-section">
+                    <h3>Messages</h3>
+                    <ul id="resultMessages" class="result-list"></ul>
+                </section>
+
+                <section class="result-section">
+                    <div class="section-head">
+                        <h3>Attachments</h3>
+                        <span id="resultAttachmentCount" class="count-pill">0 files</span>
+                    </div>
+                    <ul id="resultAttachments" class="result-list"></ul>
+                </section>
+            </article>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = "safespeak_track_access";
+
+            const el = {
+                form: document.getElementById("trackForm"),
+                caseCodeInput: document.getElementById("caseCode"),
+                passphraseInput: document.getElementById("passphrase"),
+                togglePassphrase: document.getElementById("togglePassphrase"),
+                checkStatusButton: document.getElementById("checkStatusButton"),
+                clearFormButton: document.getElementById("clearFormButton"),
+                trackNotice: document.getElementById("trackNotice"),
+                resultPanel: document.getElementById("resultPanel"),
+                resultStatusBadge: document.getElementById("resultStatusBadge"),
+                resultCaseCode: document.getElementById("resultCaseCode"),
+                resultRisk: document.getElementById("resultRisk"),
+                resultCategory: document.getElementById("resultCategory"),
+                resultUpdated: document.getElementById("resultUpdated"),
+                resultSummary: document.getElementById("resultSummary"),
+                resultTimeline: document.getElementById("resultTimeline"),
+                resultMessages: document.getElementById("resultMessages"),
+                resultAttachments: document.getElementById("resultAttachments"),
+                resultAttachmentCount: document.getElementById("resultAttachmentCount")
+            };
+
+            function setNotice(message, tone) {
+                el.trackNotice.textContent = message;
+                el.trackNotice.className = "notice notice-" + (tone || "neutral");
+            }
+
+            function normalizeCaseCode(value) {
+                return String(value || "").trim().toUpperCase();
+            }
+
+            function setLoading(isLoading) {
+                el.checkStatusButton.disabled = isLoading;
+                el.checkStatusButton.classList.toggle("is-loading", isLoading);
+            }
+
+            function formatDate(value) {
+                if (!value) {
+                    return "-";
+                }
+                const parsed = new Date(value);
+                if (Number.isNaN(parsed.getTime())) {
+                    return String(value);
+                }
+                return parsed.toLocaleString();
+            }
+
+            function formatSize(sizeBytes) {
+                const raw = Number(sizeBytes || 0);
+                if (!Number.isFinite(raw) || raw <= 0) {
+                    return "0 B";
+                }
+                const units = ["B", "KB", "MB", "GB"];
+                let value = raw;
+                let unitIndex = 0;
+                while (value >= 1024 && unitIndex < units.length - 1) {
+                    value /= 1024;
+                    unitIndex += 1;
+                }
+                return value.toFixed(value >= 10 ? 0 : 1) + " " + units[unitIndex];
+            }
+
+            function clearChildren(node) {
+                while (node.firstChild) {
+                    node.removeChild(node.firstChild);
+                }
+            }
+
+            function appendEmptyItem(listElement, text) {
+                const item = document.createElement("li");
+                item.className = "empty-item";
+                item.textContent = text;
+                listElement.appendChild(item);
+            }
+
+            function renderTimeline(items) {
+                clearChildren(el.resultTimeline);
+                if (!Array.isArray(items) || items.length === 0) {
+                    appendEmptyItem(el.resultTimeline, "No timeline updates yet.");
+                    return;
+                }
+
+                items.forEach((entry) => {
+                    const row = document.createElement("li");
+                    row.className = "timeline-item";
+
+                    const label = document.createElement("span");
+                    label.className = "item-label";
+                    label.textContent = String((entry && entry.label) || "Update");
+
+                    const value = document.createElement("span");
+                    value.className = "item-value";
+                    value.textContent = formatDate((entry && entry.value) || "-");
+
+                    row.appendChild(label);
+                    row.appendChild(value);
+                    el.resultTimeline.appendChild(row);
+                });
+            }
+
+            function renderMessages(items) {
+                clearChildren(el.resultMessages);
+                if (!Array.isArray(items) || items.length === 0) {
+                    appendEmptyItem(el.resultMessages, "No secure messages yet.");
+                    return;
+                }
+
+                items.forEach((entry) => {
+                    const row = document.createElement("li");
+                    row.className = "message-item";
+
+                    const meta = document.createElement("p");
+                    meta.className = "message-meta";
+                    const role = String((entry && entry.sender_role) || "system");
+                    meta.textContent = role.toUpperCase() + " - " + formatDate(entry && entry.created_at);
+
+                    const body = document.createElement("p");
+                    body.className = "message-body";
+                    body.textContent = String((entry && entry.body) || "");
+
+                    row.appendChild(meta);
+                    row.appendChild(body);
+                    el.resultMessages.appendChild(row);
+                });
+            }
+
+            function renderAttachments(items) {
+                clearChildren(el.resultAttachments);
+                const count = Array.isArray(items) ? items.length : 0;
+                el.resultAttachmentCount.textContent = count + (count === 1 ? " file" : " files");
+
+                if (!count) {
+                    appendEmptyItem(el.resultAttachments, "No attachments available.");
+                    return;
+                }
+
+                items.forEach((entry) => {
+                    const row = document.createElement("li");
+                    row.className = "attachment-item";
+
+                    const name = document.createElement("span");
+                    name.className = "item-label";
+                    name.textContent = String((entry && entry.display_name) || "Unnamed file");
+
+                    const meta = document.createElement("span");
+                    meta.className = "item-value";
+                    const mimeType = String((entry && entry.mime_type) || "");
+                    const sizeText = formatSize(entry && entry.size_bytes);
+                    meta.textContent = mimeType ? mimeType + " - " + sizeText : sizeText;
+
+                    row.appendChild(name);
+                    row.appendChild(meta);
+                    el.resultAttachments.appendChild(row);
+                });
+            }
+
+            function statusClass(status) {
+                const value = String(status || "").toLowerCase();
+                if (value.includes("closed") || value.includes("resolved")) {
+                    return "status-resolved";
+                }
+                if (value.includes("review") || value.includes("progress")) {
+                    return "status-active";
+                }
+                return "status-neutral";
+            }
+
+            function renderTrackingResult(data) {
+                const report = data.report || {};
+                const statusText = String(report.status || "Received");
+
+                el.resultStatusBadge.textContent = statusText;
+                el.resultStatusBadge.className = "status-badge " + statusClass(statusText);
+
+                el.resultCaseCode.textContent = String(data.case_code || report.case_code || "-");
+                el.resultRisk.textContent = String(report.risk_level || "-");
+                el.resultCategory.textContent = String(report.category || "-");
+                el.resultUpdated.textContent = formatDate(report.updated_at || report.created_at || "");
+                el.resultSummary.textContent = String(report.summary || "No summary available yet.");
+
+                renderTimeline(data.timeline);
+                renderMessages(data.messages);
+                renderAttachments(data.attachments);
+
+                el.resultPanel.classList.remove("hidden");
+            }
+
+            async function parseErrorMessage(response) {
+                try {
+                    const data = await response.json();
+                    if (data && typeof data.detail === "string" && data.detail.trim()) {
+                        return data.detail;
+                    }
+                } catch (_error) {
+                    // Fall back to status-specific messages.
+                }
+
+                if (response.status === 401) {
+                    return "Invalid case code or passphrase.";
+                }
+                if (response.status === 404) {
+                    return "Case not found.";
+                }
+                if (response.status === 429) {
+                    return "Too many attempts. Tracking is temporarily locked.";
+                }
+                return "Unable to check case status right now.";
+            }
+
+            function persistAccess(caseCode, passphrase) {
+                if (!caseCode || !passphrase) {
+                    return;
+                }
+
+                try {
+                    sessionStorage.setItem(
+                        STORAGE_KEY,
+                        JSON.stringify({
+                            case_code: caseCode,
+                            passphrase: passphrase
+                        })
+                    );
+                } catch (_error) {
+                    // Ignore storage restrictions.
+                }
+            }
+
+            function restoreAccess() {
+                try {
+                    const raw = sessionStorage.getItem(STORAGE_KEY);
+                    if (!raw) {
+                        return;
+                    }
+                    const parsed = JSON.parse(raw);
+                    if (!parsed || typeof parsed !== "object") {
+                        return;
+                    }
+                    const storedCode = normalizeCaseCode(parsed.case_code);
+                    const storedPassphrase = String(parsed.passphrase || "").trim();
+                    if (!el.caseCodeInput.value && storedCode) {
+                        el.caseCodeInput.value = storedCode;
+                    }
+                    if (!el.passphraseInput.value && storedPassphrase) {
+                        el.passphraseInput.value = storedPassphrase;
+                    }
+                } catch (_error) {
+                    // Ignore malformed storage value.
+                }
+            }
+
+            async function submitTrackingRequest() {
+                const caseCode = normalizeCaseCode(el.caseCodeInput.value);
+                const passphrase = String(el.passphraseInput.value || "").trim();
+
+                if (!caseCode) {
+                    el.caseCodeInput.focus();
+                    setNotice("Case code is required.", "error");
+                    return;
+                }
+
+                if (!passphrase) {
+                    el.passphraseInput.focus();
+                    setNotice("Passphrase is required.", "error");
+                    return;
+                }
+
+                setLoading(true);
+                setNotice("Checking secure case status...", "loading");
+
+                try {
+                    const response = await fetch("/api/cases/track", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            case_code: caseCode,
+                            passphrase: passphrase
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(await parseErrorMessage(response));
+                    }
+
+                    const payload = await response.json();
+                    el.caseCodeInput.value = String(payload.case_code || caseCode);
+                    persistAccess(el.caseCodeInput.value, passphrase);
+                    renderTrackingResult(payload);
+                    setNotice("Case updates loaded successfully.", "success");
+                } catch (error) {
+                    const message = error instanceof Error && error.message ? error.message : "Unable to check case status.";
+                    setNotice(message, "error");
+                } finally {
+                    setLoading(false);
+                }
+            }
+
+            function hydrateFromQuery() {
+                const params = new URLSearchParams(window.location.search);
+                const queryCase = normalizeCaseCode(params.get("case") || params.get("case_code") || "");
+                const queryPassphrase = String(params.get("passphrase") || "").trim();
+
+                if (queryCase) {
+                    el.caseCodeInput.value = queryCase;
+                }
+                if (queryPassphrase) {
+                    el.passphraseInput.value = queryPassphrase;
+                }
+
+                return Boolean(queryCase && queryPassphrase);
+            }
+
+            function resetView() {
+                el.form.reset();
+                el.resultPanel.classList.add("hidden");
+                el.resultStatusBadge.textContent = "No status yet";
+                el.resultStatusBadge.className = "status-badge status-neutral";
+                clearChildren(el.resultTimeline);
+                clearChildren(el.resultMessages);
+                clearChildren(el.resultAttachments);
+                el.resultAttachmentCount.textContent = "0 files";
+                setNotice("Form cleared. Enter case credentials to continue.", "neutral");
+                el.caseCodeInput.focus();
+                try {
+                    sessionStorage.removeItem(STORAGE_KEY);
+                } catch (_error) {
+                    // Ignore storage restrictions.
+                }
+            }
+
+            el.form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                submitTrackingRequest();
+            });
+
+            el.togglePassphrase.addEventListener("click", function () {
+                const masked = el.passphraseInput.type === "password";
+                el.passphraseInput.type = masked ? "text" : "password";
+                el.togglePassphrase.textContent = masked ? "Hide" : "Show";
+            });
+
+            el.clearFormButton.addEventListener("click", resetView);
+
+            restoreAccess();
+            const shouldAutoTrack = hydrateFromQuery();
+            if (shouldAutoTrack) {
+                submitTrackingRequest();
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10213b" />
+    <title>SafeSpeak X | Privacy-First Secure Reporting</title>
+    <script>
+        (function () {
+            var path = window.location.pathname.replace(/\/+$/, "") || "/";
+            var view = path === "/track" ? "track" : path === "/admin" || path === "/boomboomadminstrator" ? "admin" : path === "/submit" || path === "/report" ? "submit" : "home";
+            document.documentElement.dataset.view = view;
+            document.title = view === "track"
+                ? "SafeSpeak X | Track Case"
+                : view === "admin"
+                    ? "SafeSpeak X | Admin Console"
+                    : view === "submit"
+                        ? "SafeSpeak X | Submit Report"
+                    : "SafeSpeak X | Privacy-First Secure Reporting";
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css?v=2" />
+</head>
+<body>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+
+    <main class="shell">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">SX</div>
+                <div class="brand-copy">
+                    <div class="brand-name">SafeSpeak X</div>
+                    <div class="brand-subtitle">Privacy-first anonymous reporting, case tracking, and secure admin review</div>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <span id="backendPill" class="status-pill pulse">Connecting</span>
+                <a href="/" class="button tertiary">Home</a>
+                <a href="/track" class="button tertiary">Track a case</a>
+                <a href="/admin" class="button tertiary">Admin console</a>
+                <button id="panicBtn" class="ghost-button danger" type="button">Panic Exit</button>
+            </div>
+        </header>
+
+        <section id="routeBanner" class="route-banner" aria-live="polite">
+            <div class="route-banner-copy">
+                <p id="routeBannerKicker" class="panel-kicker">Route</p>
+                <h2 id="routeBannerTitle">Title</h2>
+                <p id="routeBannerText" class="status-note">Text</p>
+            </div>
+            <div class="route-banner-actions">
+                <a id="routeBannerPrimary" class="button primary" href="/">Primary</a>
+                <a id="routeBannerSecondary" class="button tertiary" href="/">Home</a>
+            </div>
+        </section>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Secure reporting for abuse, harassment, corruption, and human rights cases</p>
+                <h1>Report safely. Track anonymously. Review securely.</h1>
+                <p class="lede">
+                    SafeSpeak X helps people submit reports safely and track updates through a clear, privacy-focused experience.
+                </p>
+                <div class="hero-actions">
+                    <a href="/submit" class="button primary">Submit a report</a>
+                    <a href="/track" class="button secondary">Track a case</a>
+                </div>
+            </div>
+
+            <aside class="hero-card" aria-label="How SafeSpeak works">
+                <div class="hero-card-head">
+                    <div>
+                        <p class="mini-label">How it works</p>
+                        <h2>Fast, private, and structured</h2>
+                    </div>
+                    <span class="tone-pill">3 steps</span>
+                </div>
+
+                <div class="home-step-list">
+                    <div class="home-step">
+                        <strong>1. Submit confidentially</strong>
+                        <p>Describe the incident and attach evidence. No account is required.</p>
+                    </div>
+                    <div class="home-step">
+                        <strong>2. Save case credentials</strong>
+                        <p>Receive a secure case code and passphrase immediately after submission.</p>
+                    </div>
+                    <div class="home-step">
+                        <strong>3. Track updates safely</strong>
+                        <p>Use your credentials on the tracker page to view status and responses.</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-title">Built for clarity</div>
+                    <p class="status-note">The platform is designed so users can submit quickly and understand case progress without confusion.</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="home-showcase" aria-label="Home highlights">
+            <article class="home-showcase-card">
+                <figure class="home-showcase-image">
+                    <img src="/home-media/anonymous-reporting" alt="Anonymous reporting illustration" loading="lazy" decoding="async" />
+                </figure>
+                <h3>Anonymous Reporting</h3>
+                <p>Report incidents without creating an account, while still getting a clear tracking path for follow-up.</p>
+                <div class="badge-row">
+                    <span class="badge">No signup required</span>
+                </div>
+            </article>
+
+            <article class="home-showcase-card">
+                <figure class="home-showcase-image">
+                    <img src="/home-media/secure-case-tracking" alt="Secure case tracking illustration" loading="lazy" decoding="async" />
+                </figure>
+                <h3>Case Tracking</h3>
+                <p>Check progress anytime with your case code and passphrase to view updates in one secure place.</p>
+                <div class="badge-row">
+                    <span class="badge">Private status access</span>
+                </div>
+            </article>
+
+            <article class="home-showcase-card">
+                <figure class="home-showcase-image">
+                    <img src="/home-media/privacy-protection" alt="Privacy protection illustration" loading="lazy" decoding="async" />
+                </figure>
+                <h3>Privacy Protection</h3>
+                <p>Sensitive details are handled with protection-first workflows so reporting remains confidential and safer by default.</p>
+                <div class="badge-row">
+                    <span class="badge">Protection-first design</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="grid-two" id="submit">
+            <article class="panel">
+                <div class="section-head">
+                    <div>
+                        <p class="panel-kicker">Anonymous submission</p>
+                        <h2>Send a report without creating an account</h2>
+                    </div>
+                    <button id="sampleBtn" class="ghost-button" type="button">Load sample</button>
+                </div>
+                <p class="helper">
+                    Enter the incident details, attach evidence if needed, and SafeSpeak X will redact common personal identifiers before saving the case.
+                </p>
+
+                <form id="reportForm" class="form-grid">
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="reportCategory">Incident type</label>
+                            <select id="reportCategory" name="category" required>
+                                <option value="abuse">Abuse</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="sexual harassment">Sexual harassment</option>
+                                <option value="domestic violence">Domestic violence</option>
+                                <option value="stalking">Stalking</option>
+                                <option value="discrimination">Discrimination</option>
+                                <option value="workplace abuse">Workplace abuse</option>
+                                <option value="corruption">Corruption</option>
+                                <option value="bribery">Bribery</option>
+                                <option value="fraud">Fraud</option>
+                                <option value="extortion">Extortion</option>
+                                <option value="human rights">Human rights</option>
+                                <option value="human rights violation">Human rights violation</option>
+                                <option value="police misconduct">Police misconduct</option>
+                                <option value="cyber harassment">Cyber harassment</option>
+                                <option value="hate speech">Hate speech</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="reportTitle">Short title</label>
+                            <input id="reportTitle" name="title" type="text" maxlength="255" placeholder="Optional summary title" />
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="reportDetails">Incident details</label>
+                        <textarea id="reportDetails" name="details" maxlength="5000" placeholder="Describe what happened, what was said, and why it matters." required></textarea>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="reportLocation">Location or area</label>
+                            <input id="reportLocation" name="location" type="text" maxlength="255" placeholder="Optional location" />
+                        </div>
+                        <div class="field">
+                            <label for="evidenceFiles">Evidence files</label>
+                            <label class="file-pill" for="evidenceFiles">Attach one or more images, PDFs, or documents</label>
+                            <input id="evidenceFiles" class="file-input" name="evidence_files" type="file" multiple accept="image/*,.pdf,.doc,.docx,.txt" />
+                            <div class="status-message">You can select multiple evidence files at once.</div>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <div class="file-list" id="selectedFiles">
+                            <span class="count-text">No evidence attached yet.</span>
+                        </div>
+                        <div class="count-text"><span id="reportCount">0</span> characters</div>
+                    </div>
+
+                    <div class="action-row">
+                        <button id="submitReportBtn" class="button primary" type="submit">Submit securely</button>
+                        <span class="status-message">A fresh case code and passphrase are generated automatically after every submission.</span>
+                    </div>
+                </form>
+
+                <section id="submissionResult" class="result-card is-empty" aria-live="polite">
+                    <div class="result-head">
+                        <div>
+                            <div class="result-title">Awaiting first report</div>
+                            <p class="status-note">Your submission will be redacted, classified, and issued a private case code.</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+            <article class="panel track-panel" id="track">
+                <div class="section-head track-page-head">
+                    <div>
+                        <p class="panel-kicker">Anonymous case tracking page</p>
+                        <h2>Track your case securely</h2>
+                    </div>
+                    <div class="track-head-actions">
+                        <div class="track-date" id="trackDateBadge">--/--/--</div>
+                        <button id="trackSampleBtn" class="ghost-button" type="button">Use latest case</button>
+                    </div>
+                </div>
+
+                <div class="track-layout">
+                    <aside class="track-instructions">
+                        <div class="track-instruction-card">
+                            <h3>Before you track</h3>
+                            <ul class="track-points">
+                                <li>After submitting the form, the system generates a case code in <strong>SS-2026-XXXX</strong> format.</li>
+                                <li>User can check status using the <strong>case code</strong> and <strong>passphrase</strong>.</li>
+                                <li>If you submitted from this same browser, your latest case can be loaded automatically.</li>
+                            </ul>
+                            <p class="helper compact-helper">Repeated invalid attempts are recorded as security events to reduce brute-force abuse.</p>
+                        </div>
+                    </aside>
+
+                    <div class="track-form-wrap">
+                        <div class="track-form-card">
+                            <h3>Track Your Case</h3>
+                            <form id="trackForm" class="form-grid track-form-grid">
+                                <div class="field">
+                                    <label for="trackCaseCode">Case Code</label>
+                                    <input id="trackCaseCode" name="case_code" type="text" placeholder="SS-2026-1234" required />
+                                </div>
+                                <div class="field">
+                                    <label for="trackPassphrase">Passphrase</label>
+                                    <input id="trackPassphrase" name="passphrase" type="text" placeholder="Enter your private passphrase" required />
+                                </div>
+                                <div class="action-row track-action-row">
+                                    <button class="button primary" type="submit">Check Status</button>
+                                    <span class="status-message">Keep both values together to view updates securely.</span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <section id="trackingResult" class="result-card is-empty" aria-live="polite">
+                            <div class="result-head">
+                                <div>
+                                    <div class="result-title">No case loaded yet</div>
+                                    <p class="status-note">Your case status, replies, and attachment summary will appear here.</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel" id="admin">
+            <div class="admin-top">
+                <div>
+                    <p class="panel-kicker">Admin console</p>
+                    <h2>Secure review, status updates, and replies</h2>
+                </div>
+                <div class="status-message" id="adminStatus">Logged out</div>
+            </div>
+            <p class="helper">
+                Admin login uses JWT authentication. Once logged in, you can review reports, update their status, respond to anonymous users, and inspect security events.
+            </p>
+
+            <div class="hero-chips">
+                <span class="chip">PII redaction</span>
+                <span class="chip">Anonymous case codes</span>
+                <span class="chip">Role-based admin review</span>
+            </div>
+
+            <aside class="hero-card" aria-label="Live overview">
+                <div class="hero-card-head">
+                    <div>
+                        <p class="mini-label">Live overview</p>
+                        <h2>Operational privacy at a glance</h2>
+                    </div>
+                    <span id="enginePill" class="tone-pill">Local</span>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric">
+                        <strong id="totalReportsStat">--</strong>
+                        <span>total reports</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="openReportsStat">--</strong>
+                        <span>open reports</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="highPriorityStat">--</strong>
+                        <span>high priority</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="securityEventsStat">--</strong>
+                        <span>security events</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <div id="loginView" class="dashboard-shell">
+                <form id="adminLoginForm" class="form-grid">
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="adminUsername">Admin username</label>
+                            <input id="adminUsername" name="username" type="text" autocomplete="username" placeholder="admin@safespeak.local" required />
+                        </div>
+                        <div class="field">
+                            <label for="adminPassword">Password</label>
+                            <input id="adminPassword" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="button primary" type="submit">Log in</button>
+                        <span class="status-message">Default dev credentials are documented in the README.</span>
+                    </div>
+                </form>
+            </div>
+
+            <div id="dashboardView" class="dashboard-shell hidden">
+                <div class="dashboard-grid">
+                    <div class="metric">
+                        <strong id="dashTotalReports">--</strong>
+                        <span>reports</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="dashOpenReports">--</strong>
+                        <span>open cases</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="dashHighPriority">--</strong>
+                        <span>high priority</span>
+                    </div>
+                    <div class="metric">
+                        <strong id="dashSecurityEvents">--</strong>
+                        <span>security events</span>
+                    </div>
+                </div>
+
+                <div class="admin-dashboard-actions">
+                    <button
+                        id="securityMonitoringBtn"
+                        class="button secondary"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="securityMonitoringPanel"
+                    >Security Event Monitoring</button>
+                </div>
+
+                <div class="info-block reports-workspace">
+                    <div class="card-head reports-workspace-head">
+                        <div>
+                            <p class="mini-label">Case management</p>
+                            <div class="section-title">Reports workspace</div>
+                            <p class="status-note">Find reports quickly, review sanitized details, and update each case from one structured view.</p>
+                        </div>
+                        <button id="refreshDashboardBtn" class="ghost-button" type="button">Refresh reports</button>
+                    </div>
+                    <div class="report-toolbar">
+                        <div class="report-filter-grid">
+                            <div class="field report-search-field">
+                                <label for="reportSearchInput">Search reports</label>
+                                <input
+                                    id="reportSearchInput"
+                                    type="search"
+                                    placeholder="Case code, title, summary, location, or report ID"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                />
+                            </div>
+                            <div class="field">
+                                <label for="reportStatusFilter">Status</label>
+                                <select id="reportStatusFilter">
+                                    <option value="all">All statuses</option>
+                                    <option value="Received">Received</option>
+                                    <option value="Under Review">Under Review</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Resolved">Resolved</option>
+                                    <option value="Closed">Closed</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="reportRiskFilter">Risk</label>
+                                <select id="reportRiskFilter">
+                                    <option value="all">All risk levels</option>
+                                    <option value="high">High</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="reportSortFilter">Sort by</label>
+                                <select id="reportSortFilter">
+                                    <option value="newest">Newest first</option>
+                                    <option value="oldest">Oldest first</option>
+                                    <option value="updated">Recently updated</option>
+                                    <option value="priority">Highest risk first</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="action-row report-toolbar-actions">
+                            <span id="reportFilterSummary" class="status-message">Showing 0 reports</span>
+                            <button id="clearReportFiltersBtn" class="text-button" type="button">Clear filters</button>
+                        </div>
+                    </div>
+                    <div id="reportsList" class="report-list"></div>
+                </div>
+
+                <section id="securityMonitoringPanel" class="security-monitoring-panel hidden" aria-label="Security event monitoring">
+                    <div class="security-monitoring-head">
+                        <div>
+                            <p class="mini-label">System monitoring</p>
+                            <div class="section-title">Security Event Monitoring</div>
+                            <p class="status-note">Review suspicious activity and important administrative actions.</p>
+                        </div>
+                        <button id="closeSecurityMonitoringBtn" class="ghost-button" type="button">Close</button>
+                    </div>
+                    <div class="security-monitoring-grid">
+                        <div class="info-block">
+                            <div class="card-head">
+                                <div>
+                                    <div class="section-title">Security Events</div>
+                                    <p class="status-note">Suspicious activity and failed access attempts.</p>
+                                </div>
+                            </div>
+                            <div id="eventsList" class="event-list"></div>
+                        </div>
+
+                        <div class="info-block">
+                            <div class="card-head">
+                                <div>
+                                    <div class="section-title">Audit Log</div>
+                                    <p class="status-note">Important actions captured by the system.</p>
+                                </div>
+                            </div>
+                            <div id="logsList" class="log-list"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
+        const LATEST_CASE_STORAGE_KEY = "safespeak-latest-case-access";
+        const params = new URLSearchParams(window.location.search);
+
+        const state = {
+            token: localStorage.getItem("safespeak-admin-token") || "",
+            latestCaseCode: "",
+            latestPassphrase: "",
+            latestSubmission: null,
+            latestTracking: null,
+            dashboardReports: [],
+        };
+
+        const view = document.documentElement.dataset.view || "home";
+
+        const el = {
+            backendPill: document.getElementById("backendPill"),
+            enginePill: document.getElementById("enginePill"),
+            panicBtn: document.getElementById("panicBtn"),
+            routeBanner: document.getElementById("routeBanner"),
+            routeBannerKicker: document.getElementById("routeBannerKicker"),
+            routeBannerTitle: document.getElementById("routeBannerTitle"),
+            routeBannerText: document.getElementById("routeBannerText"),
+            routeBannerPrimary: document.getElementById("routeBannerPrimary"),
+            routeBannerSecondary: document.getElementById("routeBannerSecondary"),
+            sampleBtn: document.getElementById("sampleBtn"),
+            trackSampleBtn: document.getElementById("trackSampleBtn"),
+            refreshDashboardBtn: document.getElementById("refreshDashboardBtn"),
+            securityMonitoringBtn: document.getElementById("securityMonitoringBtn"),
+            closeSecurityMonitoringBtn: document.getElementById("closeSecurityMonitoringBtn"),
+            securityMonitoringPanel: document.getElementById("securityMonitoringPanel"),
+            reportForm: document.getElementById("reportForm"),
+            trackForm: document.getElementById("trackForm"),
+            adminLoginForm: document.getElementById("adminLoginForm"),
+            reportCategory: document.getElementById("reportCategory"),
+            reportTitle: document.getElementById("reportTitle"),
+            reportDetails: document.getElementById("reportDetails"),
+            reportLocation: document.getElementById("reportLocation"),
+            evidenceFiles: document.getElementById("evidenceFiles"),
+            selectedFiles: document.getElementById("selectedFiles"),
+            reportCount: document.getElementById("reportCount"),
+            trackCaseCode: document.getElementById("trackCaseCode"),
+            trackPassphrase: document.getElementById("trackPassphrase"),
+            adminUsername: document.getElementById("adminUsername"),
+            adminPassword: document.getElementById("adminPassword"),
+            adminStatus: document.getElementById("adminStatus"),
+            loginView: document.getElementById("loginView"),
+            dashboardView: document.getElementById("dashboardView"),
+            submissionResult: document.getElementById("submissionResult"),
+            trackingResult: document.getElementById("trackingResult"),
+            totalReportsStat: document.getElementById("totalReportsStat"),
+            openReportsStat: document.getElementById("openReportsStat"),
+            highPriorityStat: document.getElementById("highPriorityStat"),
+            securityEventsStat: document.getElementById("securityEventsStat"),
+            dashTotalReports: document.getElementById("dashTotalReports"),
+            dashOpenReports: document.getElementById("dashOpenReports"),
+            dashHighPriority: document.getElementById("dashHighPriority"),
+            dashSecurityEvents: document.getElementById("dashSecurityEvents"),
+            reportsList: document.getElementById("reportsList"),
+            reportSearchInput: document.getElementById("reportSearchInput"),
+            reportStatusFilter: document.getElementById("reportStatusFilter"),
+            reportRiskFilter: document.getElementById("reportRiskFilter"),
+            reportSortFilter: document.getElementById("reportSortFilter"),
+            clearReportFiltersBtn: document.getElementById("clearReportFiltersBtn"),
+            reportFilterSummary: document.getElementById("reportFilterSummary"),
+            eventsList: document.getElementById("eventsList"),
+            logsList: document.getElementById("logsList"),
+        };
+
+        const sampleReport = {
+            category: "harassment",
+            title: "Workplace pressure and repeated contact",
+            details: "My name is Amina Rahman and I keep getting threatening calls from 01712345678. Please review this as soon as possible. Email me at amina@example.com if needed.",
+            location: "Dhaka office",
+        };
+
+        function apiUrl(path) {
+            return `${API_BASE}${path}`;
+        }
+
+        async function request(path, options = {}) {
+            const headers = new Headers(options.headers || {});
+
+            if (state.token) {
+                headers.set("Authorization", `Bearer ${state.token}`);
+            }
+            if (options.body && !(options.body instanceof FormData) && !headers.has("Content-Type")) {
+                headers.set("Content-Type", "application/json");
+            }
+
+            const response = await fetch(apiUrl(path), {
+                ...options,
+                headers,
+            });
+
+            const contentType = response.headers.get("content-type") || "";
+            const payload = contentType.includes("application/json") ? await response.json() : await response.text();
+            if (!response.ok) {
+                const message = payload && typeof payload === "object" && payload.detail ? payload.detail : payload || "Request failed";
+                throw new Error(message);
+            }
+            return payload;
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function setBackendState(online) {
+            el.backendPill.textContent = online ? "Backend online" : "Offline fallback";
+            el.backendPill.classList.toggle("online", online);
+            el.backendPill.classList.toggle("offline", !online);
+            el.backendPill.classList.remove("pulse");
+            el.enginePill.textContent = online ? "Backend" : "Local";
+        }
+
+        function formatDateTime(value) {
+            return new Intl.DateTimeFormat(undefined, {
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+            }).format(new Date(value));
+        }
+
+        function clampLabel(level) {
+            const normalized = String(level || "").toLowerCase();
+            if (normalized === "high") return "level-high";
+            if (normalized === "medium") return "level-medium";
+            return "level-low";
+        }
+
+        function updateCharacterCount() {
+            el.reportCount.textContent = String(el.reportDetails.value.length);
+        }
+
+        function renderSelectedFiles() {
+            const files = Array.from(el.evidenceFiles.files || []);
+            el.selectedFiles.innerHTML = "";
+            if (!files.length) {
+                const empty = document.createElement("span");
+                empty.className = "count-text";
+                empty.textContent = "No evidence attached yet.";
+                el.selectedFiles.appendChild(empty);
+                return;
+            }
+            files.slice(0, 4).forEach((file) => {
+                const pill = document.createElement("span");
+                pill.className = "file-pill";
+                pill.textContent = file.name;
+                el.selectedFiles.appendChild(pill);
+            });
+            if (files.length > 4) {
+                const extra = document.createElement("span");
+                extra.className = "count-text";
+                extra.textContent = `+${files.length - 4} more`;
+                el.selectedFiles.appendChild(extra);
+            }
+        }
+
+        async function copyText(text) {
+            if (!text) return;
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(text);
+                    return;
+                }
+            } catch (error) {
+                // Fallback below.
+            }
+            const helper = document.createElement("textarea");
+            helper.value = text;
+            helper.setAttribute("readonly", "true");
+            helper.style.position = "absolute";
+            helper.style.left = "-9999px";
+            document.body.appendChild(helper);
+            helper.select();
+            document.execCommand("copy");
+            helper.remove();
+        }
+
+        function normalizeCaseCode(value) {
+            return String(value || "").trim().toUpperCase();
+        }
+
+        function setTrackingNotice(title, description, tone = "neutral") {
+            const toneClass = tone === "error" ? "level-high" : tone === "success" ? "level-low" : "level-medium";
+            el.trackingResult.classList.remove("is-empty");
+            el.trackingResult.innerHTML = `
+                <div class="result-head">
+                    <div>
+                        <div class="result-title">${escapeHtml(title)}</div>
+                        <p class="status-note">${escapeHtml(description)}</p>
+                    </div>
+                    <span class="level-pill ${toneClass}">${escapeHtml(tone)}</span>
+                </div>
+            `;
+        }
+
+        function persistLatestCaseAccess(caseCode, passphrase) {
+            if (!caseCode || !passphrase) {
+                return;
+            }
+
+            try {
+                sessionStorage.setItem(LATEST_CASE_STORAGE_KEY, JSON.stringify({ caseCode, passphrase }));
+            } catch (error) {
+                // Session storage can be unavailable in some browsing modes.
+            }
+        }
+
+        function restoreLatestCaseAccess() {
+            try {
+                const raw = sessionStorage.getItem(LATEST_CASE_STORAGE_KEY);
+                if (!raw) {
+                    return;
+                }
+
+                const parsed = JSON.parse(raw);
+                if (!parsed || typeof parsed.caseCode !== "string" || typeof parsed.passphrase !== "string") {
+                    return;
+                }
+
+                state.latestCaseCode = normalizeCaseCode(parsed.caseCode);
+                state.latestPassphrase = parsed.passphrase.trim();
+
+                if (el.trackCaseCode && !el.trackCaseCode.value) {
+                    el.trackCaseCode.value = normalizeCaseCode(parsed.caseCode);
+                }
+                if (el.trackPassphrase && !el.trackPassphrase.value) {
+                    el.trackPassphrase.value = parsed.passphrase;
+                }
+            } catch (error) {
+                // Ignore malformed or inaccessible session state.
+            }
+        }
+
+        function renderSubmissionResult(data) {
+            state.latestCaseCode = normalizeCaseCode(data.case_code);
+            state.latestPassphrase = String(data.passphrase || "").trim();
+            state.latestSubmission = data;
+            persistLatestCaseAccess(data.case_code, data.passphrase);
+
+            const report = data.report;
+            persistLatestCaseAccess(data.case_code, state.latestPassphrase || el.trackPassphrase.value.trim());
+            const redactions = data.redactions || [];
+            const guidance = data.guidance || [];
+            const redactionCount = redactions.length;
+            const mlRedactionCount = Number(data.ml_redaction_count || 0);
+            const redactionEngine = data.redaction_engine || "regex fallback";
+
+            const redactionMarkup = redactions.length
+                ? redactions.map((item) => `<span class="badge">${escapeHtml(item)}</span>`).join("")
+                : '<span class="badge">No obvious PII detected</span>';
+
+            const guidanceMarkup = guidance.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+            const attachmentMarkup = data.attachment_count
+                ? `<span class="badge">${data.attachment_count} evidence file(s)</span>`
+                : `<span class="badge">No evidence attached</span>`;
+
+            el.submissionResult.classList.remove("is-empty");
+            el.submissionResult.innerHTML = `
+                <div class="result-head">
+                    <div>
+                        <div class="result-title">Report submitted securely</div>
+                        <p class="status-note">A fresh case code and passphrase were generated for this submission. Save them before you leave this page.</p>
+                    </div>
+                    <span class="level-pill ${clampLabel(report.risk_level)}">${escapeHtml(report.risk_level)} risk</span>
+                </div>
+                <div class="score-grid">
+                    <div class="mini-card">
+                        <div class="count-text">Case code</div>
+                        <div class="result-score">${escapeHtml(normalizeCaseCode(data.case_code))}</div>
+                        <div class="link-row">
+                            <span class="badge">Auto-generated</span>
+                            <button class="text-button" type="button" data-copy="case">Copy</button>
+                        </div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="count-text">Passphrase</div>
+                        <div class="result-score" style="font-size: 1.3rem;">${escapeHtml(data.passphrase)}</div>
+                        <div class="link-row">
+                            <span class="badge">Auto-generated</span>
+                            <button class="text-button" type="button" data-copy="passphrase">Copy</button>
+                        </div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="count-text">Risk score</div>
+                        <div class="result-score">${report.risk_score}</div>
+                        <div class="status-message">${escapeHtml(report.summary)}</div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="count-text">PII redaction</div>
+                        <div class="result-score">${redactionCount}</div>
+                        <div class="status-message">${redactionCount ? "Sensitive details were replaced before storage." : "No obvious PII was detected in this report."}</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Sanitized preview</div>
+                    <p class="status-note">${escapeHtml(report.sanitized_text)}</p>
+                </div>
+                <div class="subgrid">
+                    <div class="info-block">
+                        <div class="section-title">Redaction signals</div>
+                        <div class="badge-row">
+                            <span class="badge">${escapeHtml(redactionEngine)}</span>
+                            <span class="badge">ML hits: ${mlRedactionCount}</span>
+                            ${redactionMarkup}
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="section-title">Guidance</div>
+                        <ul class="list">${guidanceMarkup}</ul>
+                    </div>
+                </div>
+                <div class="action-row">
+                    <button class="button primary" type="button" data-open-track>Track this case</button>
+                    <button class="button tertiary" type="button" data-copy-track-link>Copy tracker link</button>
+                </div>
+                <div class="status-message">Your case code and passphrase stay in this browser session so the tracker can preload them.</div>
+                <div class="status-message">${escapeHtml(data.tracking_hint || "")}</div>
+            `;
+
+            el.submissionResult.querySelector('[data-copy="case"]')?.addEventListener("click", () => copyText(normalizeCaseCode(data.case_code)));
+            el.submissionResult.querySelector('[data-copy="passphrase"]')?.addEventListener("click", () => copyText(data.passphrase));
+            el.submissionResult.querySelector("[data-copy-track-link]")?.addEventListener("click", () => {
+                const base = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : window.location.origin;
+                copyText(`${base}${data.track_url || `/track?case=${normalizeCaseCode(data.case_code)}`}`);
+            });
+            el.submissionResult.querySelector("[data-open-track]")?.addEventListener("click", openTrackPage);
+        }
+
+        function setGeneratedCaseAccess(data) {
+            state.latestCaseCode = normalizeCaseCode(data.case_code);
+            state.latestPassphrase = String(data.passphrase || "").trim();
+            persistLatestCaseAccess(state.latestCaseCode, state.latestPassphrase);
+            el.trackCaseCode.value = state.latestCaseCode;
+            el.trackPassphrase.value = state.latestPassphrase;
+        }
+
+        function openTrackPage() {
+            if (!state.latestCaseCode || !state.latestPassphrase) {
+                alert("Submit a report first to generate a case code.");
+                return;
+            }
+
+            persistLatestCaseAccess(state.latestCaseCode, state.latestPassphrase);
+            const query = new URLSearchParams({ case: state.latestCaseCode });
+            window.location.assign(`${apiUrl("/track")}?${query.toString()}`);
+        }
+
+        function renderTrackingResult(data) {
+            state.latestTracking = data;
+            const report = data.report;
+            persistLatestCaseAccess(data.case_code, state.latestPassphrase || el.trackPassphrase.value.trim());
+            const messages = data.messages || [];
+            const timeline = data.timeline || [];
+            const attachments = data.attachments || [];
+
+            const messageMarkup = messages.length
+                ? messages.map((message) => `
+                    <div class="message-item">
+                        <div class="message-meta">
+                            <strong>${escapeHtml(message.sender_role)}</strong>
+                            <span class="count-text">${formatDateTime(message.created_at)}</span>
+                        </div>
+                        <div class="report-body">${escapeHtml(message.body)}</div>
+                    </div>
+                `).join("")
+                : '<div class="empty-state">No messages have been added yet.</div>';
+
+            const timelineMarkup = timeline.map((item) => `
+                <div class="timeline-item">
+                    <div class="card-meta">
+                        <strong>${escapeHtml(item.label)}</strong>
+                        <span class="count-text">${escapeHtml(item.value)}</span>
+                    </div>
+                </div>
+            `).join("");
+
+            const attachmentMarkup = attachments.length
+                ? attachments.map((item) => `
+                    <div class="timeline-item">
+                        <div class="card-meta">
+                            <strong>${escapeHtml(item.display_name)}</strong>
+                            <span class="count-text">${Math.round(Number(item.size_bytes || 0) / 1024)} KB</span>
+                        </div>
+                        <div class="count-text">${escapeHtml(item.mime_type || "Unknown type")}</div>
+                    </div>
+                `).join("")
+                : '<div class="empty-state">No evidence attachments were stored for this report.</div>';
+
+            el.trackingResult.classList.remove("is-empty");
+            el.trackingResult.innerHTML = `
+                <div class="result-head">
+                    <div>
+                        <div class="result-title">Case ${escapeHtml(normalizeCaseCode(data.case_code))}</div>
+                        <p class="status-note">This response is based on your anonymous passphrase and secure case code.</p>
+                    </div>
+                    <span class="level-pill ${clampLabel(report.risk_level)}">${escapeHtml(report.risk_level)} risk</span>
+                </div>
+                <div class="score-grid">
+                    <div class="mini-card">
+                        <div class="count-text">Status</div>
+                        <div class="result-score" style="font-size: 1.4rem;">${escapeHtml(report.status)}</div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="count-text">Risk score</div>
+                        <div class="result-score">${report.risk_score}</div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="count-text">Updated</div>
+                        <div class="result-score" style="font-size: 1.25rem;">${formatDateTime(report.updated_at)}</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Case summary</div>
+                    <p class="status-note">${escapeHtml(report.summary)}</p>
+                </div>
+                <div class="subgrid">
+                    <div class="info-block">
+                        <div class="section-title">Timeline</div>
+                        <div class="timeline">${timelineMarkup}</div>
+                    </div>
+                    <div class="info-block">
+                        <div class="section-title">Attachments</div>
+                        <div class="list">${attachmentMarkup}</div>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="section-title">Messages</div>
+                    <div class="message-list">${messageMarkup}</div>
+                </div>
+            `;
+        }
+
+        function riskWeight(level) {
+            const normalized = String(level || "").toLowerCase();
+            if (normalized === "high") return 3;
+            if (normalized === "medium") return 2;
+            if (normalized === "low") return 1;
+            return 0;
+        }
+
+        function parseTimestamp(value) {
+            const parsed = Date.parse(String(value || ""));
+            return Number.isNaN(parsed) ? 0 : parsed;
+        }
+
+        function buildReportSearchIndex(report) {
+            return [
+                report.id ? `report ${report.id}` : "",
+                report.case_code || "",
+                report.title || "",
+                report.summary || "",
+                report.sanitized_text || "",
+                report.category || "",
+                report.status || "",
+                report.location || "",
+            ]
+                .join(" ")
+                .toLowerCase();
+        }
+
+        function filteredReports() {
+            const allReports = Array.isArray(state.dashboardReports) ? state.dashboardReports.slice() : [];
+            const searchText = String(el.reportSearchInput?.value || "").trim().toLowerCase();
+            const statusFilter = String(el.reportStatusFilter?.value || "all");
+            const riskFilter = String(el.reportRiskFilter?.value || "all").toLowerCase();
+            const sortFilter = String(el.reportSortFilter?.value || "newest");
+
+            const filtered = allReports.filter((report) => {
+                if (statusFilter !== "all" && String(report.status || "") !== statusFilter) {
+                    return false;
+                }
+                if (riskFilter !== "all" && String(report.risk_level || "").toLowerCase() !== riskFilter) {
+                    return false;
+                }
+                if (searchText && !buildReportSearchIndex(report).includes(searchText)) {
+                    return false;
+                }
+                return true;
+            });
+
+            filtered.sort((a, b) => {
+                if (sortFilter === "oldest") {
+                    return parseTimestamp(a.created_at) - parseTimestamp(b.created_at);
+                }
+                if (sortFilter === "updated") {
+                    return parseTimestamp(b.updated_at) - parseTimestamp(a.updated_at);
+                }
+                if (sortFilter === "priority") {
+                    const riskDelta = riskWeight(b.risk_level) - riskWeight(a.risk_level);
+                    if (riskDelta !== 0) return riskDelta;
+                    return parseTimestamp(b.updated_at) - parseTimestamp(a.updated_at);
+                }
+                return parseTimestamp(b.created_at) - parseTimestamp(a.created_at);
+            });
+
+            return {
+                filtered,
+                total: allReports.length,
+            };
+        }
+
+        function renderReportsList(reports, total) {
+            if (el.reportFilterSummary) {
+                if (!total) {
+                    el.reportFilterSummary.textContent = "No reports available yet";
+                } else if (reports.length === total) {
+                    el.reportFilterSummary.textContent = `Showing all ${total} reports`;
+                } else {
+                    el.reportFilterSummary.textContent = `Showing ${reports.length} of ${total} reports`;
+                }
+            }
+
+            const reportsMarkup = reports.length
+                ? reports.map((report) => {
+                    const riskClass = clampLabel(report.risk_level);
+                    const cardRiskClass = `report-risk-${String(report.risk_level || "low").toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+                    const location = report.location || "Not provided";
+                    const attachmentCount = Array.isArray(report.attachments) ? report.attachments.length : 0;
+                    const messageCount = Array.isArray(report.messages) ? report.messages.length : 0;
+                    const redactionLabels = Array.isArray(report.redaction_labels) ? report.redaction_labels : [];
+                    const statusClass = `status-${String(report.status || "received").toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+                    return `
+                    <article class="report-card ${cardRiskClass}" data-report-id="${report.id}">
+                        <div class="report-card-header">
+                            <div class="report-heading">
+                                <div class="report-identifiers">
+                                    <span class="status-tag">${escapeHtml(report.case_code || `Report ${report.id}`)}</span>
+                                    <span class="badge">Report #${report.id}</span>
+                                </div>
+                                <h3 class="report-title">${escapeHtml(report.title || "Anonymous report")}</h3>
+                                <p class="report-summary">${escapeHtml(report.summary || "No summary available.")}</p>
+                            </div>
+                            <div class="report-header-flags">
+                                <span class="level-pill ${riskClass}">${escapeHtml(report.risk_level || "low")} risk</span>
+                                <span class="report-status-pill ${statusClass}">${escapeHtml(report.status || "Received")}</span>
+                            </div>
+                        </div>
+
+                        <div class="report-facts">
+                            <div class="report-fact">
+                                <span>Category</span>
+                                <strong>${escapeHtml(report.category || "Uncategorized")}</strong>
+                            </div>
+                            <div class="report-fact">
+                                <span>Location</span>
+                                <strong>${escapeHtml(location)}</strong>
+                            </div>
+                            <div class="report-fact">
+                                <span>Created</span>
+                                <strong>${formatDateTime(report.created_at)}</strong>
+                            </div>
+                            <div class="report-fact">
+                                <span>Last updated</span>
+                                <strong>${formatDateTime(report.updated_at)}</strong>
+                            </div>
+                        </div>
+
+                        <div class="report-content-grid">
+                            <section class="report-detail-panel">
+                                <div class="report-section-label">Sanitized report details</div>
+                                <p class="report-detail-text">${escapeHtml(report.sanitized_text || report.summary || "No sanitized details available.")}</p>
+                            </section>
+                            <aside class="report-insights-panel">
+                                <div class="report-section-label">Report insights</div>
+                                <div class="report-insight-grid">
+                                    <div><strong>${Number(report.redaction_count || 0)}</strong><span>redactions</span></div>
+                                    <div><strong>${Number(report.ml_redaction_count || 0)}</strong><span>ML hits</span></div>
+                                    <div><strong>${messageCount}</strong><span>messages</span></div>
+                                    <div><strong>${attachmentCount}</strong><span>evidence files</span></div>
+                                </div>
+                                <p class="report-engine-note">Engine: ${escapeHtml(report.redaction_engine || "regex fallback")}</p>
+                            </aside>
+                        </div>
+
+                        ${attachmentCount ? `
+                            <section class="report-support-section">
+                                <div class="report-section-label">Evidence attachments</div>
+                                <div class="report-attachment-list">
+                                    ${report.attachments.map((file) => `
+                                        <button class="report-attachment-button" type="button" data-download-attachment="${file.id}">
+                                            <span aria-hidden="true">📎</span>
+                                            <span>${escapeHtml(file.display_name || "Evidence")}</span>
+                                        </button>
+                                    `).join("")}
+                                </div>
+                            </section>
+                        ` : ""}
+
+                        ${redactionLabels.length ? `
+                            <section class="report-support-section">
+                                <div class="report-section-label">Redaction signals</div>
+                                <div class="badge-row">
+                                    ${redactionLabels.map((item) => `<span class="badge">${escapeHtml(item)}</span>`).join("")}
+                                </div>
+                            </section>
+                        ` : ""}
+
+                        <section class="report-update-panel">
+                            <div class="report-update-head">
+                                <div>
+                                    <div class="report-section-label">Case update</div>
+                                    <p class="status-note">Change the status or send a private reply to the reporter.</p>
+                                </div>
+                            </div>
+                            <div class="report-controls">
+                                <div class="field">
+                                    <label>Status</label>
+                                    <select data-status>
+                                        ${["Received", "Under Review", "In Progress", "Resolved", "Closed"].map((status) => `<option value="${status}" ${status === report.status ? "selected" : ""}>${status}</option>`).join("")}
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Reply</label>
+                                    <textarea data-reply placeholder="Send an anonymous response or request more evidence."></textarea>
+                                </div>
+                            </div>
+                            <div class="action-row report-card-actions">
+                                <button class="button primary" type="button" data-save-report>Save update</button>
+                                <button class="button tertiary" type="button" data-copy-case>Copy case code</button>
+                            </div>
+                        </section>
+                    </article>
+                `;
+                }).join("")
+                : '<div class="empty-state">No reports match your current filters. Clear filters or try another keyword.</div>';
+
+            el.reportsList.innerHTML = reportsMarkup;
+            el.reportsList.querySelectorAll("[data-download-attachment]").forEach((button) => {
+    button.addEventListener("click", async () => {
+        const attachmentId = button.dataset.downloadAttachment;
+        const token = localStorage.getItem("safespeak-admin-token");
+
+        const response = await fetch(`/api/admin/attachments/${attachmentId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            alert("Unable to download attachment.");
+            return;
+        }
+
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+    });
+});
+
+            el.reportsList.querySelectorAll("[data-save-report]").forEach((button) => {
+                button.addEventListener("click", async (event) => {
+                    const card = event.currentTarget.closest("[data-report-id]");
+                    const reportId = card?.dataset.reportId;
+                    const status = card.querySelector("[data-status]")?.value || "Received";
+                    const reply = card.querySelector("[data-reply]")?.value || "";
+                    button.disabled = true;
+                    button.textContent = "Saving...";
+                    try {
+                        await request(`/api/admin/reports/${reportId}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({ status, reply }),
+                        });
+                        await loadDashboard();
+                    } catch (error) {
+                        alert(error.message);
+                    } finally {
+                        button.disabled = false;
+                        button.textContent = "Save update";
+                    }
+                });
+            });
+
+            el.reportsList.querySelectorAll("[data-copy-case]").forEach((button) => {
+                button.addEventListener("click", async (event) => {
+                    const card = event.currentTarget.closest("[data-report-id]");
+                    const caseCode = card?.querySelector(".status-tag")?.textContent || "";
+                    await copyText(caseCode);
+                });
+            });
+        }
+
+        function applyReportFilters() {
+            const { filtered, total } = filteredReports();
+            renderReportsList(filtered, total);
+        }
+
+        function renderDashboard(data) {
+            el.dashTotalReports.textContent = String(data.stats?.total_reports ?? 0);
+            el.dashOpenReports.textContent = String(data.stats?.open_reports ?? 0);
+            el.dashHighPriority.textContent = String(data.stats?.high_priority ?? 0);
+            el.dashSecurityEvents.textContent = String(data.stats?.security_events ?? 0);
+            el.adminStatus.textContent = "Secure session active";
+
+            state.dashboardReports = Array.isArray(data.reports) ? data.reports : [];
+            applyReportFilters();
+
+            const eventsMarkup = (data.security_events || []).length
+                ? data.security_events.map((event) => `
+                    <div class="event-card">
+                        <div class="event-meta">
+                            <span class="event-pill ${clampLabel(event.severity)}">${escapeHtml(event.severity)}</span>
+                            <span class="count-text">${formatDateTime(event.created_at)}</span>
+                        </div>
+                        <div class="badge-row">
+                            <span class="badge">${escapeHtml(event.case_code ? `Case ${event.case_code}` : event.report_id ? `Report #${event.report_id}` : "Global event")}</span>
+                            <span class="badge">${escapeHtml(event.event_type)}</span>
+                        </div>
+                        <div class="event-detail">${escapeHtml(event.detail)}</div>
+                    </div>
+                `).join("")
+                : '<div class="empty-state">No security events recorded yet.</div>';
+            el.eventsList.innerHTML = eventsMarkup;
+
+            const logsMarkup = (data.audit_logs || []).length
+                ? data.audit_logs.map((log) => `
+                    <div class="log-card">
+                        <div class="log-meta">
+                            <strong>${escapeHtml(log.action)}</strong>
+                            <span class="count-text">${formatDateTime(log.created_at)}</span>
+                        </div>
+                        <div class="log-detail">${escapeHtml(log.detail)}</div>
+                        <div class="count-text">Actor: ${escapeHtml(log.actor_role)} / ${escapeHtml(log.actor_identifier)}</div>
+                    </div>
+                `).join("")
+                : '<div class="empty-state">No audit entries yet.</div>';
+            el.logsList.innerHTML = logsMarkup;
+
+            el.loginView.classList.add("hidden");
+            el.dashboardView.classList.remove("hidden");
+        }
+
+        function setDashboardVisibility(loggedIn) {
+            if (loggedIn) {
+                el.loginView.classList.add("hidden");
+                el.dashboardView.classList.remove("hidden");
+                el.adminStatus.textContent = "Secure session active";
+            } else {
+                el.loginView.classList.remove("hidden");
+                el.dashboardView.classList.add("hidden");
+                el.adminStatus.textContent = "Logged out";
+                el.securityMonitoringPanel?.classList.add("hidden");
+                el.securityMonitoringBtn?.setAttribute("aria-expanded", "false");
+                state.dashboardReports = [];
+                el.reportsList.innerHTML = "";
+                if (el.reportFilterSummary) {
+                    el.reportFilterSummary.textContent = "Showing 0 reports";
+                }
+            }
+        }
+
+        function setSecurityMonitoringVisibility(visible) {
+            if (!el.securityMonitoringPanel || !el.securityMonitoringBtn) return;
+            el.securityMonitoringPanel.classList.toggle("hidden", !visible);
+            el.securityMonitoringBtn.setAttribute("aria-expanded", visible ? "true" : "false");
+            el.securityMonitoringBtn.textContent = visible ? "Hide Security Monitoring" : "Security Event Monitoring";
+
+            if (visible) {
+                el.securityMonitoringPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        async function refreshPublicStats() {
+            try {
+                const stats = await request("/api/public/stats");
+                el.totalReportsStat.textContent = String(stats.total_reports ?? 0);
+                el.openReportsStat.textContent = String(stats.open_reports ?? 0);
+                el.highPriorityStat.textContent = String(stats.high_priority ?? 0);
+                el.securityEventsStat.textContent = String(stats.security_events ?? 0);
+            } catch (error) {
+                el.totalReportsStat.textContent = "--";
+                el.openReportsStat.textContent = "--";
+                el.highPriorityStat.textContent = "--";
+                el.securityEventsStat.textContent = "--";
+            }
+        }
+
+        async function checkBackend() {
+            try {
+                const data = await request("/api/health");
+                setBackendState(true);
+                if (data.stats) {
+                    el.totalReportsStat.textContent = String(data.stats.total_reports ?? 0);
+                    el.openReportsStat.textContent = String(data.stats.open_reports ?? 0);
+                    el.highPriorityStat.textContent = String(data.stats.high_priority ?? 0);
+                    el.securityEventsStat.textContent = String(data.stats.security_events ?? 0);
+                }
+            } catch (error) {
+                setBackendState(false);
+            }
+        }
+
+        async function loadDashboard() {
+            if (!state.token) {
+                setDashboardVisibility(false);
+                return;
+            }
+
+            try {
+                const data = await request("/api/admin/dashboard");
+                renderDashboard(data);
+            } catch (error) {
+                if (String(error.message).toLowerCase().includes("token") || String(error.message).toLowerCase().includes("admin")) {
+                    state.token = "";
+                    localStorage.removeItem("safespeak-admin-token");
+                    setDashboardVisibility(false);
+                }
+                throw error;
+            }
+        }
+
+        async function handleReportSubmit(event) {
+            event.preventDefault();
+            const submitButton = el.reportForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+
+            try {
+                const details = el.reportDetails.value.trim();
+                if (!details || !/[A-Za-z0-9]/.test(details)) {
+                    el.reportDetails.focus();
+                    alert("Please enter report details before submitting.");
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("category", el.reportCategory.value);
+                formData.append("title", el.reportTitle.value.trim());
+                formData.append("details", details);
+                formData.append("location", el.reportLocation.value.trim());
+                Array.from(el.evidenceFiles.files || []).forEach((file) => {
+                    formData.append("evidence_files", file);
+                });
+
+                const data = await request("/api/reports", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                renderSubmissionResult(data);
+                setGeneratedCaseAccess(data);
+                el.reportForm.reset();
+                updateCharacterCount();
+                renderSelectedFiles();
+                await refreshPublicStats();
+                if (state.token) {
+                    await loadDashboard();
+                }
+            } catch (error) {
+                alert(error.message);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit securely";
+            }
+        }
+
+        async function handleTrackSubmit(event) {
+            event.preventDefault();
+            const button = el.trackForm.querySelector('button[type="submit"]');
+            button.disabled = true;
+            button.textContent = "Checking...";
+
+            try {
+                const caseCode = normalizeCaseCode(el.trackCaseCode.value);
+                const passphrase = String(el.trackPassphrase.value || "").trim();
+
+                if (!caseCode) {
+                    el.trackCaseCode.focus();
+                    setTrackingNotice("Case ID required", "Enter the case code you received after submission.", "error");
+                    return;
+                }
+
+                if (!passphrase) {
+                    el.trackPassphrase.focus();
+                    setTrackingNotice("Passphrase required", "Enter the matching passphrase to unlock your case updates.", "error");
+                    return;
+                }
+
+                const data = await request("/api/cases/track", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        case_code: caseCode,
+                        passphrase,
+                    }),
+                });
+                state.latestCaseCode = caseCode;
+                state.latestPassphrase = passphrase;
+                persistLatestCaseAccess(caseCode, passphrase);
+                renderTrackingResult(data);
+            } catch (error) {
+                setTrackingNotice("Unable to load case", error.message, "error");
+            } finally {
+                button.disabled = false;
+                button.textContent = "Track case";
+            }
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            const button = el.adminLoginForm.querySelector('button[type="submit"]');
+            button.disabled = true;
+            button.textContent = "Signing in...";
+
+            try {
+                const data = await request("/api/admin/login", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        username: el.adminUsername.value.trim(),
+                        password: el.adminPassword.value,
+                    }),
+                });
+                state.token = data.access_token;
+                localStorage.setItem("safespeak-admin-token", state.token);
+                setDashboardVisibility(true);
+                await loadDashboard();
+            } catch (error) {
+                alert(error.message);
+            } finally {
+                button.disabled = false;
+                button.textContent = "Log in";
+            }
+        }
+
+        function populateSample() {
+            el.reportCategory.value = sampleReport.category;
+            el.reportTitle.value = sampleReport.title;
+            el.reportDetails.value = sampleReport.details;
+            el.reportLocation.value = sampleReport.location;
+            updateCharacterCount();
+        }
+
+        function useLatestCase() {
+            if (!state.latestCaseCode || !state.latestPassphrase) {
+                alert("Submit a report first to generate a case code.");
+                return;
+            }
+            el.trackCaseCode.value = normalizeCaseCode(state.latestCaseCode);
+            el.trackPassphrase.value = state.latestPassphrase;
+            setTrackingNotice("Latest case loaded", "Your last generated case code and passphrase were restored in the tracker form.", "success");
+        }
+
+        function hydrateTrackFormFromQuery() {
+            const caseFromQuery = normalizeCaseCode(params.get("case") || params.get("case_code") || "");
+            const passphraseFromQuery = String(params.get("passphrase") || "").trim();
+
+            if (caseFromQuery) {
+                el.trackCaseCode.value = caseFromQuery;
+                state.latestCaseCode = caseFromQuery;
+            }
+
+            if (passphraseFromQuery) {
+                el.trackPassphrase.value = passphraseFromQuery;
+                state.latestPassphrase = passphraseFromQuery;
+                persistLatestCaseAccess(caseFromQuery || state.latestCaseCode, passphraseFromQuery);
+            }
+        }
+
+        async function maybeAutoTrackFromQuery() {
+            const shouldAutoTrack = view === "track" && Boolean(el.trackCaseCode.value.trim()) && Boolean(el.trackPassphrase.value.trim());
+            if (!shouldAutoTrack) return;
+            await handleTrackSubmit({ preventDefault() {} });
+        }
+
+        function handlePanicExit() {
+            state.token = "";
+            state.latestCaseCode = "";
+            state.latestPassphrase = "";
+            state.latestSubmission = null;
+            state.latestTracking = null;
+            localStorage.removeItem("safespeak-admin-token");
+            window.location.replace(apiUrl("/panic"));
+        }
+
+        function configureRouteLayout() {
+            const mainShell = document.querySelector(".shell");
+            const gridTwo = document.querySelector(".grid-two");
+            const submitSection = document.getElementById("submit");
+            const trackSection = document.getElementById("track");
+            const adminSection = document.getElementById("admin");
+
+            if (view === "track" && gridTwo && submitSection && trackSection) {
+                gridTwo.insertBefore(trackSection, submitSection);
+            }
+
+            if (view === "admin" && mainShell && adminSection && gridTwo) {
+                mainShell.insertBefore(adminSection, gridTwo);
+            }
+        }
+
+        function configureRouteBanner() {
+            if (view === "submit") {
+                el.routeBannerKicker.textContent = "Anonymous Submission";
+                el.routeBannerTitle.textContent = "Create a sanitized report";
+                el.routeBannerText.textContent = "Fill in the case details below, attach evidence, and SafeSpeak X will generate a fresh case code and passphrase after submission.";
+                el.routeBannerPrimary.textContent = "Jump to form";
+                el.routeBannerPrimary.href = "#submit";
+                el.routeBannerSecondary.textContent = "Home";
+                el.routeBannerSecondary.href = "/";
+                return;
+            }
+
+            if (view === "track") {
+                el.routeBannerKicker.textContent = "Case Tracking";
+                el.routeBannerTitle.textContent = "Open your anonymous case tracker";
+                el.routeBannerText.textContent = "Use the case code and passphrase you received after submission to check status and read replies.";
+                el.routeBannerPrimary.textContent = "Jump to tracker";
+                el.routeBannerPrimary.href = "#track";
+                el.routeBannerSecondary.textContent = "Home";
+                el.routeBannerSecondary.href = "/";
+            } else if (view === "admin") {
+                el.routeBannerKicker.textContent = "Admin Console";
+                el.routeBannerTitle.textContent = "Secure review and case management";
+                el.routeBannerText.textContent = "Log in to review submissions, update statuses, reply anonymously, and monitor security events.";
+                el.routeBannerPrimary.textContent = "Jump to login";
+                el.routeBannerPrimary.href = "#admin";
+                el.routeBannerSecondary.textContent = "Home";
+                el.routeBannerSecondary.href = "/";
+            } else {
+                el.routeBannerKicker.textContent = "Home";
+                el.routeBannerTitle.textContent = "Submit a report securely";
+                el.routeBannerText.textContent = "Create a sanitized anonymous report, attach evidence, and get a fresh case code and passphrase automatically.";
+                el.routeBannerPrimary.textContent = "Submit a report";
+                el.routeBannerPrimary.href = "#submit";
+                el.routeBannerSecondary.textContent = "Track a case";
+                el.routeBannerSecondary.href = "/track";
+            }
+        }
+
+        function focusRoutePanel() {
+            if (view === "submit") {
+                const submitSection = document.getElementById("submit");
+                submitSection?.scrollIntoView({ behavior: "auto", block: "start" });
+                el.reportCategory.focus();
+                return;
+            }
+
+            if (view === "track") {
+                restoreLatestCaseAccess();
+                const trackSection = document.getElementById("track");
+                trackSection?.scrollIntoView({ behavior: "auto", block: "start" });
+                el.trackCaseCode.focus();
+                return;
+            }
+
+            if (view === "admin") {
+                const adminSection = document.getElementById("admin");
+                adminSection?.scrollIntoView({ behavior: "auto", block: "start" });
+                el.adminUsername.focus();
+            }
+        }
+
+        el.reportDetails.addEventListener("input", updateCharacterCount);
+        el.evidenceFiles.addEventListener("change", renderSelectedFiles);
+        el.reportForm.addEventListener("submit", handleReportSubmit);
+        el.trackForm.addEventListener("submit", handleTrackSubmit);
+        el.adminLoginForm.addEventListener("submit", handleLogin);
+
+        [
+            [el.reportSearchInput, "input"],
+            [el.reportStatusFilter, "change"],
+            [el.reportRiskFilter, "change"],
+            [el.reportSortFilter, "change"],
+        ].forEach(([element, eventName]) => {
+            element?.addEventListener(eventName, applyReportFilters);
+        });
+
+        el.clearReportFiltersBtn?.addEventListener("click", () => {
+            if (el.reportSearchInput) el.reportSearchInput.value = "";
+            if (el.reportStatusFilter) el.reportStatusFilter.value = "all";
+            if (el.reportRiskFilter) el.reportRiskFilter.value = "all";
+            if (el.reportSortFilter) el.reportSortFilter.value = "newest";
+            applyReportFilters();
+            el.reportSearchInput?.focus();
+        });
+
+        el.sampleBtn.addEventListener("click", populateSample);
+        el.trackSampleBtn.addEventListener("click", useLatestCase);
+        el.refreshDashboardBtn.addEventListener("click", async () => {
+            try {
+                await loadDashboard();
+                await refreshPublicStats();
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+        el.securityMonitoringBtn?.addEventListener("click", () => {
+            const isHidden = el.securityMonitoringPanel?.classList.contains("hidden");
+            setSecurityMonitoringVisibility(Boolean(isHidden));
+        });
+        el.closeSecurityMonitoringBtn?.addEventListener("click", () => {
+            setSecurityMonitoringVisibility(false);
+            el.securityMonitoringBtn?.focus();
+        });
+        el.panicBtn.addEventListener("click", handlePanicExit);
+
+        const trackDateBadge = document.getElementById("trackDateBadge");
+        if (trackDateBadge) {
+            const now = new Date();
+            const dd = String(now.getDate()).padStart(2, "0");
+            const mm = String(now.getMonth() + 1).padStart(2, "0");
+            const yy = String(now.getFullYear()).slice(-2);
+            trackDateBadge.textContent = `${dd}-${mm}-${yy}`;
+        }
+
+        updateCharacterCount();
+        renderSelectedFiles();
+        restoreLatestCaseAccess();
+        hydrateTrackFormFromQuery();
+        setDashboardVisibility(Boolean(state.token));
+        checkBackend();
+        refreshPublicStats();
+        if (state.token) {
+            loadDashboard().catch(() => setDashboardVisibility(false));
+        }
+        configureRouteLayout();
+        configureRouteBanner();
+        populateSample();
+        focusRoutePanel();
+        maybeAutoTrackFromQuery();
+    </script>
+</body>
+</html>
